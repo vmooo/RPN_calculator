@@ -1,4 +1,6 @@
 #include <gtest/gtest.h>
+
+#include "../include/Parser.hpp"
 #include "../include/rpn.hpp"
 
 TEST(test_stack, test_initialization_1) {
@@ -60,5 +62,52 @@ TEST(test_stack, test_pop) {
 
     ASSERT_TRUE(stack.top() == 2);
 }
+
+TEST(test_parser, test1) {
+    constexpr rpn::Parser parser;
+    constexpr auto array = parser("1");
+    ASSERT_TRUE(array[0].value == "1");
+}
+
+TEST(test_parser, test2) {
+    constexpr auto array = rpn::Parser().operator()("1");
+    ASSERT_TRUE(array[0].token_type == rpn::TokenType::LITERAL_INTEGER);
+}
+
+TEST(test_parser, test3) {
+    constexpr auto array = rpn::Parser().operator()("^");
+    ASSERT_TRUE(array[0].token_type == rpn::OPERATOR_POW);
+}
+
+TEST(test_parser, test4) {
+    constexpr auto array = rpn::Parser().operator()("2 3");
+    ASSERT_TRUE(array[0].value == "2" && array[1].value == "3");
+}
+
+TEST(test_parser, test5) {
+    constexpr auto array = rpn::Parser().operator()("2 3 +");
+    ASSERT_TRUE(array[2].token_type == rpn::OPERATOR_PLUS && array[2].value == "+");
+}
+
+TEST(test_parser, test6) {
+    constexpr auto array = rpn::Parser().operator()("2 3 + -");
+    ASSERT_TRUE(array[3].token_type == rpn::OPERATOR_MINUS && array[3].value == "-");
+}
+
+TEST(test_parser, test7) {
+    constexpr auto array = rpn::Parser().operator()("2 3 + - *");
+    ASSERT_TRUE(array[4].token_type == rpn::OPERATOR_MUL && array[4].value == "*");
+}
+
+TEST(test_parser, test8) {
+    constexpr auto array = rpn::Parser().operator()("2 3 + - * /");
+    ASSERT_TRUE(array[5].token_type == rpn::OPERATOR_DIV && array[5].value == "/");
+}
+
+TEST(test_parser, test9) {
+    constexpr auto array = rpn::Parser().operator()("2 3 + - * / %");
+    ASSERT_TRUE(array[6].token_type == rpn::OPERATOR_MOD && array[6].value == "%");
+}
+
 
 

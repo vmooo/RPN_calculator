@@ -15,6 +15,7 @@ target_include_directories(rpn_calculator
         PUBLIC
         include/Stack.hpp
         include/rpn.hpp
+        include/Parser.hpp
 )
 
 include(FetchContent)
