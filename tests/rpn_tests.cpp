@@ -156,4 +156,9 @@ TEST(test_rpn, test_rpn3) {
     ASSERT_TRUE("2 3 ^"_rpn == 2 * 2 * 2);
 }
 
+TEST(test_rpn, test_rpn4) {
+    using namespace rpn;
+    static_assert("5 1 2 + 4 * + 3 -"_rpn == 5 + (1 + 2) * 4 - 3);
+}
+
 

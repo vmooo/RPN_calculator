@@ -4,9 +4,6 @@ project(rpn_calculator)
 set(CMAKE_CXX_STANDARD 23)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-set(CMAKE_CXX_SANITIZER "address")
-set(CMAKE_CXX_SANITIZER "undefined")
-
 add_library(rpn_calculator STATIC src/rpn.cpp)
 
 target_include_directories(rpn_calculator
