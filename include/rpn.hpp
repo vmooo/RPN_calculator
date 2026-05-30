@@ -32,13 +32,14 @@ namespace rpn {
             case OPERATOR_PLUS: return a + b;
             case OPERATOR_MINUS: return a - b;
             case OPERATOR_MUL: return a * b;
-            case OPERATOR_POW: pow_int(a, b);
+            case OPERATOR_POW: return pow_int(a, b);
             case OPERATOR_DIV:
                 assert(b != 0);
                 return a / b;
             case OPERATOR_MOD:
                 assert(b != 0);
                 return a % b;
+            default: throw std::runtime_error("unknown operation");
         }
     }
 

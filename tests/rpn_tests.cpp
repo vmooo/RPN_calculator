@@ -136,4 +136,24 @@ TEST(test_rpn, test_sum) {
     ASSERT_TRUE("2 3 +"_rpn == 5);
 }
 
+TEST(test_rpn, test_sum2) {
+    using namespace rpn;
+    ASSERT_TRUE("2 3 4 +"_rpn == 7);
+}
+
+TEST(test_rpn, test_rpn1) {
+    using namespace rpn;
+    ASSERT_TRUE("2 3 + 4 5 + *"_rpn == (2 + 3) * (4 + 5));
+}
+
+TEST(test_rpn, test_rpn2) {
+    using namespace rpn;
+    ASSERT_TRUE("10 3 /"_rpn == 10 / 3);
+}
+
+TEST(test_rpn, test_rpn3) {
+    using namespace rpn;
+    ASSERT_TRUE("2 3 ^"_rpn == 2 * 2 * 2);
+}
+
 
