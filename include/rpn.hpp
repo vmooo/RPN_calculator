@@ -1,0 +1,6 @@
+#ifndef RPN_CALCULATOR
+#define RPN_CALCULATOR
+
+
+
+#endif // RPN_CALCULATOR
