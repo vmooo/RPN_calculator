@@ -45,7 +45,7 @@ namespace rpn {
             throw_if_empty();
 
             assert(capacity <= size && capacity > 0);
-            return data[capacity--];
+            return data[--capacity];
         }
     };
 };

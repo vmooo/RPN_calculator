@@ -63,6 +63,16 @@ TEST(test_stack, test_pop) {
     ASSERT_TRUE(stack.top() == 2);
 }
 
+TEST(test_stack, test_pop2) {
+    auto stack = []() {
+        rpn::Stack<int, 5> s;
+        s.push(2);
+        s.push(3);
+        return s;
+    }();
+    ASSERT_TRUE(stack.pop() == 3);
+}
+
 TEST(test_parser, test1) {
     constexpr rpn::Parser parser;
     constexpr auto array = parser("1");
@@ -109,5 +119,21 @@ TEST(test_parser, test9) {
     ASSERT_TRUE(array[6].token_type == rpn::OPERATOR_MOD && array[6].value == "%");
 }
 
+TEST(test_rpn, test_is_not_operation) {
+    rpn::Token token;
+    token.token_type = rpn::OPERATOR_MINUS;
+    ASSERT_FALSE(rpn::is_not_operation(token));
+}
+
+TEST(test_rpn, test_is_not_operation_2) {
+    rpn::Token token;
+    token.token_type = rpn::LITERAL_INTEGER;
+    ASSERT_TRUE(rpn::is_not_operation(token));
+}
+
+TEST(test_rpn, test_sum) {
+    using namespace rpn;
+    ASSERT_TRUE("2 3 +"_rpn == 5);
+}
 
 
