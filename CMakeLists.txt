@@ -13,7 +13,7 @@ target_include_directories(rpn_calculator
         PRIVATE
         src/rpn.cpp
         PUBLIC
-        include/compile_time_stack.hpp
+        include/Stack.hpp
         include/rpn.hpp
 )
 

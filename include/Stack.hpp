@@ -9,11 +9,11 @@ namespace rpn {
     constexpr std::size_t max_stack_size = 256;
 
     template<typename T, std::size_t size>
-    struct compile_time_stack {
+    struct Stack {
         std::array<T, size> data{};
         std::size_t capacity{0};
 
-        constexpr compile_time_stack() {
+        constexpr Stack() {
             assert(size <= max_stack_size);
         }
 
